@@ -1,25 +1,22 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
 
 class App extends Component {
+  componentDidMount() {
+    fetch("/count")
+      .then(res => res.text())
+      .then(count => (document.getElementById("count").innerText = count));
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <div>
+          <div id='count'>0</div>
+        </div>
+        <form action='/join' method='POST'>
+          <input type='text' name='name' required />
+          <input type='submit' />
+        </form>
       </div>
     );
   }
